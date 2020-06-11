@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./Navigation.scss";
-import {Navbar} from "react-bootstrap"
+import { Navbar } from "react-bootstrap";
 
 export default function Navigation() {
   return (
