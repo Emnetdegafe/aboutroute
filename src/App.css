@@ -1,16 +1,13 @@
-.App {
+.header {
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.custom-btn-toolbar {
+  display: inline !important;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.custom-btn-toolbar > .btn {
+  margin-right: 1rem;
 }
 
 .App-header {

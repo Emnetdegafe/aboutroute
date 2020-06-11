@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
-// import { CardTitle } from "react-bootstrap/Card";
+import Card from "react-bootstrap/Card";
+import {Image} from"react-bootstrap"
+
 
 export default function MoviePage() {
   const route_params = useParams();
@@ -21,16 +23,20 @@ export default function MoviePage() {
   }, []);
 
   return (
-    <div className="card">
-      <h3 className="card-title">{movieDetail.Title}</h3>
-      <p>Released : {movieDetail.Released}</p>
-      <p>Director : {movieDetail.Director}</p>
-      <p>Actors : {movieDetail.Actors}</p>
-      <img
-        className="card-img-top"
-        src={movieDetail.Poster}
-        alt="Card image cap"
-      />
-    </div>
+    <Card>
+      <Card.Body className="card">
+        <Card.Title class="card-title">
+          <h1>{movieDetail.Title}</h1>
+        </Card.Title>
+        <Card.Text>Released : {movieDetail.Released}</Card.Text>
+        <Card.Text>Director : {movieDetail.Director}</Card.Text>
+        <Card.Text>Actors : {movieDetail.Actors}</Card.Text>
+        <Image
+          className="card-img-top"
+          src={movieDetail.Poster}
+          alt="poster"
+        />
+      </Card.Body>
+    </Card>
   );
 }

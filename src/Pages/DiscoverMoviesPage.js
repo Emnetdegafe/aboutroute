@@ -4,6 +4,7 @@ import Timeout from "await-timeout";
 import { Link, useHistory, useParams } from "react-router-dom";
 import { Card } from "react-bootstrap";
 import { Button } from "react-bootstrap";
+import {Image} from"react-bootstrap"
 
 // import MoviePage from "./MoviePage";
 
@@ -12,16 +13,18 @@ export default function DiscoverMoviesPage() {
   const [movies, set_movies] = useState([]);
   const [searching, set_searching] = useState("idle");
 
-  const queryParams = encodeURIComponent(searchText);
+  // const queryParams = encodeURIComponent(searchText);
   const history = useHistory();
-  const param = useParams()
+  const param = useParams();
 
-  console.log('params', param)
+  console.log("params", param);
 
-  // searching functionality 
+  // searching functionality
 
   async function search(param) {
-    if(param === undefined) { param = "love"}
+    if (param === undefined) {
+      param = "love";
+    }
     // set_searching("searching...");
     const url = `http://www.omdbapi.com/?apikey=7a3df7f0&s=${param}`;
     const res = await axios.get(url);
@@ -31,28 +34,30 @@ export default function DiscoverMoviesPage() {
     set_movies(res.data.Search);
   }
 
-  const navigateToSearch = ()=> {
-    const routeParam = encodeURIComponent(searchText)
-    history.push(`/discover/${routeParam}`)
-    console.log('routeParams', routeParam)
-  }
+  const navigateToSearch = () => {
+    const routeParam = encodeURIComponent(searchText);
+    history.push(`/discover/${routeParam}`);
+    console.log("routeParams", routeParam);
+  };
 
   useEffect(() => {
     // navigateToSearch(param)
-    search(param.searchText)
-  },[param])
+    search(param.searchText);
+  }, [param]);
 
   return (
     <Card>
       <Card.Body>
-        <Card.Title> Discover some movies!</Card.Title>
+        <Card.Title>
+          <h1>Discover some movies!</h1>
+        </Card.Title>
         {searching}
         <br />
         <input
           value={searchText}
           onChange={(e) => set_searchText(e.target.value)}
         />
-        <Button variant="primary" onClick = {navigateToSearch} >
+        <Button variant="primary" onClick={navigateToSearch}>
           search movie
         </Button>
         {movies.map((movie) => {
@@ -63,7 +68,7 @@ export default function DiscoverMoviesPage() {
                 {movie.imbID}
               </Link>
               <br />
-              <Card.Img className="" src={movie.Poster} alt="poster" />
+              <Image className="" src={movie.Poster} alt="poster" />
             </Card.Text>
           );
         })}
